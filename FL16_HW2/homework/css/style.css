@@ -1,0 +1,140 @@
+@media print {
+    .tm-content-box:not(.tm-content-header):not(.flex-2-col), .blocks, .tm-sidebar, section::before {
+        display: none
+    }
+    div.tm-content-header {
+        margin-bottom: 0
+    }
+    div.flex-2-col {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between
+    }
+    div.flex-2-col:not(.tm-section-title) {
+        align-items: center
+    }
+    .tm-section-description {
+        text-indent: 1.5em
+    }
+    div.tm-team-description-container {
+        color: rgb(41, 41, 41)
+    }
+    .tm-banner-text, .tm-footer {
+        color: rgb(220, 221, 220)
+    }
+    div>h2.tm-section-title {
+        color: blue;
+    }
+    .tm-section-description:nth-child(2) {
+        font-style: italic
+    }
+    p::first-letter {
+        color: #87CEFA
+    }
+    div.tm-banner {
+        border: none
+    }
+}
+
+h2.tm-section-title:hover {
+    color: rgb(255, 251, 251);
+    border: 3px solid grey;
+    background-color: rgb(78, 162, 231);
+    font-weight: 400
+}
+
+p::first-letter {
+    color: #87CEFA;
+    font-size: 30px
+}
+
+section, .tm-sidebar {
+    box-shadow: 0 0 12px rgb(61, 70, 70)
+}
+
+.tm-banner {
+    padding: 0;
+    border: 30px solid rgb(236, 232, 232)
+}
+
+div.flex-2-col {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between
+}
+
+section::before {
+    content: '';
+    position: absolute;
+    border: 35px solid transparent;
+    border-left: 187px solid #87CEFA;
+    border-top: 7px solid#87CEFA
+}
+
+.active h2 {
+    color: gainsboro;
+    letter-spacing: 5px;
+}
+
+h2+p {
+    font-style: italic
+}
+
+.tm-main-nav li:hover {
+    background-color: rgb(190, 190, 190);
+}
+
+.btn{
+    display: block;
+    margin-left: auto;
+    background-color: white;
+    border: 2px solid #87CEFA;
+    color: #87CEFA
+}
+
+.btn:hover {
+    background-color: #87CEFA;
+    color: white
+}
+
+.form-group:nth-child(2):after {
+    content: "*";
+    color: red;
+    vertical-align: top;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.tm-team-description-container p {
+    line-height: 2em;
+    text-indent: 1.5em
+}
+
+.heading a {
+    color: black;
+}
+
+.heading li:nth-child(1)::after, .heading li:nth-child(3)::after {
+    content: "New";
+    color: red;
+    vertical-align: top;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+.heading a:hover {
+    color: rgb(116, 158, 187);
+    border-bottom: 3px double rgb(116, 158, 187);
+}
+
+.blocks li:nth-child(even) {
+    background-color: rgb(224, 216, 216);
+}
+
+.blocks li {
+    padding: 10px;
+}
+
+.blocks li p::first-letter {
+    color: black
+}
