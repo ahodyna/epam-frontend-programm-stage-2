@@ -114,9 +114,9 @@ h1 {
     max-width: 100%;
 }
 
-.image-section img{
-max-width: 100%;
-box-shadow: 0px 5px 73px 85px rgba(7, 7, 7, 0.3) inset;
+.image-section img {
+    max-width: 100%;
+    box-shadow: 0px 5px 73px 85px rgba(7, 7, 7, 0.3) inset;
 }
 
 .title-main-content-block {
@@ -135,9 +135,7 @@ box-shadow: 0px 5px 73px 85px rgba(7, 7, 7, 0.3) inset;
 
 .image-section {
     position: relative;
-    
 }
-
 
 .like-section {
     position: absolute;
@@ -169,31 +167,37 @@ box-shadow: 0px 5px 73px 85px rgba(7, 7, 7, 0.3) inset;
     width: 40%;
 }
 
-.subscribe-form {
-    background-color: #FFF;
-    padding: 3rem 1rem 3rem 1rem;
-    width: 100%;
+.label-subscribe-form {
+    font-size: 1.2rem;
+    padding-right: 9px;
+    padding-top: 9px;
 }
 
+.flexbox-input {
+    display: flex;
+}
 
-.input-subscribe-form {
-    max-width: 100%;
-    width: 70%;
-    padding: 1rem 15rem 1rem 0.5rem;
+.input-div {
+    flex: 1;
+}
+
+.button-div {
+    flex: 0;
+    margin: 0 0 0 1rem;
+}
+
+.flexbox-input div .input-subscribe-form {
+    padding: 1em 1.2em;
+    width: 100%;
     border: 2px solid #000;
     background-color: #F3F3F3;
     color: #000;
 }
 
-
-.label-subscribe-form {
-  
-    font-size: 1.2rem;
-}
-
-.button-submit {
+.flexbox-input div .button-submit {
+    padding: 1.15em 1.4em;
+    white-space: nowrap;
     border: none;
-    padding: 18px 38px;
     background-color: #000;
     color: #FFF;
     text-align: center;
