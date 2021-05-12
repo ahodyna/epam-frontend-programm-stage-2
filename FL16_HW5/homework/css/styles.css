@@ -92,7 +92,7 @@ html {
 
 .first-paragraph {
   height: 655px;
-  background: url("../img/lady.jpg") no-repeat center;
+  background: url("../img/header_bg.jpg") no-repeat center;
   background-size: cover;
 }
 
@@ -263,7 +263,7 @@ input[placeholder] {
   margin: 15px;
 }
 
-@media only screen and (min-width: 1280px) {
+@media(min-width: 1280px) {
   .menu-item {
     max-width: 40%;
     display: flex;
@@ -362,7 +362,7 @@ input[placeholder] {
  
 }
 
-@media only screen and (min-width: 768px) and (max-width:1280px) {
+@media(min-width: 768px) and (max-width:1280px) {
   .menu-item {
     width: 60%;
     display: flex;
@@ -480,7 +480,7 @@ input[placeholder] {
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media(max-width: 768px) {
   .menu {
     display: flex;
     justify-content: center;
