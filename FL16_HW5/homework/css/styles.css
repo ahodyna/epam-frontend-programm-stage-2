@@ -99,17 +99,18 @@ html {
 .icon-first-paragraph {
   width: 450px;
   position: absolute;
-  top: 70%;
+  top: 62%;
 }
 
 .icon {
   width: 50px;
   height: 50px;
-  padding: 12px;
+  padding: 18px;
   margin: 5px;
   background-color: #0078aa;
-  border: 2px #0078aa solid;
-  border-radius: 35px;
+  border: 1px #0078aa solid;
+  border-radius: 40px;
+
 }
 
 .icon:hover {
@@ -274,13 +275,13 @@ input[placeholder] {
   h1 {
     width: 450px;
     position: absolute;
-    top: 40%;
+    top: 30%;
     margin-bottom: 0;
   }
   .description-main-page {
     width: 450px;
     position: absolute;
-    top: 55%;
+    top: 45%;
     margin-top: 0;
     margin-bottom: 0;
   }
@@ -362,7 +363,7 @@ input[placeholder] {
  
 }
 
-@media(min-width: 768px) and (max-width:1280px) {
+@media(min-width: 768px) and (max-width:1279px) {
   .menu-item {
     width: 60%;
     display: flex;
@@ -415,14 +416,14 @@ input[placeholder] {
     margin-bottom: 10px;
     padding: 0;
     width: 100%;
-    height: 520px;
+    height: 500px;
   }
   .container-item-third-paragraph {
     display: flex;
     flex-direction: column;
     padding: 10px;
     width: 30%;
-    height: 190px;
+    height: 175px;
     background-color: #fff;
   }
 
@@ -480,7 +481,7 @@ input[placeholder] {
   }
 }
 
-@media(max-width: 768px) {
+@media(max-width: 767px) {
   .menu {
     display: flex;
     justify-content: center;
@@ -511,13 +512,14 @@ input[placeholder] {
   .description-main-page {
     width: 70%;
     position: absolute;
-    top: 50%;
+    top: 45%;
     margin-top: 0;
     margin-bottom: 0;
   }
   .icon-first-paragraph {
     width: 70%;
     position: absolute;
+    top: 62%;
   }
   .icon {
     width: 30px;
@@ -525,9 +527,9 @@ input[placeholder] {
     padding: 9px;
     margin: 5px;
     background-color: #0d8ec5;
-    border: 2px #0078aa solid;
+    border: 1px #0078aa solid;
     border-radius: 25px;
-    top: 70%;
+    
   }
   .second-paragraph-picture {
     width: 100%;
