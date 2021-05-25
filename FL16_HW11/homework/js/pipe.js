@@ -20,8 +20,8 @@ const appendGreeting = (value) => `Hello, ${value}!`;
 
 const error = pipe('john_doe', replaceUnderscoreWithSpace, capitalize, '');
 
-alert(error); // Provided argument at position 2 is not a function!
+alert(error);
 
 const result = pipe('john_doe', replaceUnderscoreWithSpace, capitalize, appendGreeting);
 
-alert(result); // Hello, John Doe!
+alert(result);
