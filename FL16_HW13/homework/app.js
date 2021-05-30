@@ -24,9 +24,12 @@ const divFormFirstDiv = document.createElement('div');
 divFormFP.appendChild(divFormFirstDiv);
 
 const radioButtonRegion = document.createElement('input');
+radioButtonRegion.name = 'modeSelector';
+radioButtonRegion.dataset.mode = 'by_region';
 radioButtonRegion.type = 'radio';
 radioButtonRegion.value = 'By region';
-radioButtonRegion.id = 'regionInput'
+radioButtonRegion.id = 'regionInput';
+radioButtonRegion.onclick = updateMode
 divFormFirstDiv.appendChild(radioButtonRegion);
 
 const labelForButtonRegion = document.createElement('label');
@@ -39,9 +42,12 @@ divFormSecondDiv.className = 'divFormSecondDiv';
 divFormFP.appendChild(divFormSecondDiv);
 
 const radioButtonLanguage = document.createElement('input');
+radioButtonLanguage.name = 'modeSelector';
+radioButtonLanguage.dataset.mode = 'by_language';
 radioButtonLanguage.type = 'radio';
 radioButtonLanguage.value = 'By language';
 radioButtonLanguage.id = 'languageInput'
+radioButtonLanguage.onclick = updateMode
 divFormSecondDiv.appendChild(radioButtonLanguage);
 
 const labelForButtonLanguage = document.createElement('label');
@@ -80,88 +86,192 @@ tableDiv.id = 'tablePlace';
 tableDiv.className = 'tableDiv';
 container.appendChild(tableDiv);
 
-document.getElementById('regionInput').addEventListener('click', () => {
-    if (document.getElementById('regionInput').checked) {
-        document.getElementById('languageInput').checked = false;
-        document.getElementById('selectParagraph').innerHTML = '';
 
-        const select = document.createElement('select');
-        select.id = 'selectRegion';
-        select.disabled = false;
-        divFormSelectParagraph.appendChild(select);
+const countryColumnName = 'country'
+const areaColumnName = 'area'
+const sortByOrderNoneValue = 'none'
+const sortByOrderAscendingValue = 'asc'
+const sortByOrderDescendingValue = 'desc'
 
-        const option = document.createElement('option');
-        option.innerHTML = 'Select value';
-        select.appendChild(option);
 
-        let arrRegions = externalService.getRegionsList();
+const tableState = {
+    mode: null,
+    modeState: {
+        selected: null,
+        sortBy: 'country',
+        sortOrder: 'asc'
+    },
 
-        for (let i = 0; i < arrRegions.length; i++) {
-            let opt = document.createElement('option');
-            opt.value = i;
-            opt.innerHTML = arrRegions[i];
-            select.appendChild(opt);
+    subscriptions: [],
+    subscribe: function (subscriptionCallback) {
+        this.subscriptions.push(subscriptionCallback)
+    },
+    notify: function () {
+        console.log('notify: ', this.mode, this.modeState.selected, this.modeState.sortOrder, this.modeState.sortBy)
+        for (let i = 0; i < this.subscriptions.length; i++) {
+            let subscription = this.subscriptions[i]
+            subscription(this.mode, this.modeState)
         }
-        select.addEventListener('click', () => {
+    },
 
-            let strUser = select.options[select.selectedIndex].text;
-            let arrListRegion = externalService.getCountryListByRegion(strUser)
-            if (arrListRegion.length !== 0) {
-                document.getElementById('tablePlace').innerHTML = '';
-                createTable(arrListRegion)
+    getMode: function getMode() {
+        return this.mode
+    },
+    getMode: function getModeState() {
+        return this.modeState
+    },
 
-            } else {
-                document.getElementById('tablePlace').innerHTML = '';
-                tableDiv.innerText = 'No items, please choose search query'
+    updateMode: function (newMode) {
 
-            }
+        if (this.mode !== newMode) {
+            this.modeState.selected = null;
+            this.modeState.sortBy = countryColumnName;
+            this.modeState.sortOrder = sortByOrderAscendingValue;
+        }
 
-        })
+        this.mode = newMode
+        this.notify()
+    },
+    updateSelected: function (newSelected) {
+        this.modeState.selected = newSelected
+        this.notify()
+    },
+    updateSortBy: function (newSortBy) {
+        if (this.modeState.sortBy === newSortBy) {
+            nextSortOrder = getNextSortOrder(this.modeState.sortOrder)
+            this.modeState.sortOrder = nextSortOrder
+        } else {
+            this.modeState.sortOrder = getNextSortOrder(null)
+        }
+
+        this.modeState.sortBy = newSortBy
+        this.notify()
+    },
+    updateSortOrder: function (newSortOrder) {
+        this.modeState.sortOrder = newSortOrder
+        this.notify()
+    }
+}
+
+function getNextSortOrder(currentSortOrder) {
+    if (currentSortOrder === null || currentSortOrder === sortByOrderNoneValue) {
+        return sortByOrderAscendingValue
+    } else if (currentSortOrder === sortByOrderAscendingValue) {
+        return sortByOrderDescendingValue
+    } else if (currentSortOrder === sortByOrderDescendingValue) {
+        return sortByOrderNoneValue
+    }
+}
+
+function updateMode() {
+    const checkedInputs = document.querySelectorAll('div.formInput input:checked')
+    const newMode = checkedInputs[0].dataset.mode
+
+    if (newMode === 'by_region') {
+        countries = externalService.getRegionsList()
+        createSelect(countries)
+    } else if (newMode === 'by_language') {
+        countries = externalService.getLanguagesList()
+        createSelect(countries)
     }
 
-})
+    tableState.updateMode(newMode)
+}
 
-document.getElementById('languageInput').addEventListener('click', () => {
-    if (document.getElementById('languageInput').checked) {
-        document.getElementById('regionInput').checked = false;
-        document.getElementById('selectParagraph').innerHTML = ''
+function comparatorValueSelector(firstBigger, direction) {
+    let negativeIndex = -1;
 
-        const select = document.createElement('select');
-        select.id = 'selectLanguage';
-        select.disabled = false;
-        divFormSelectParagraph.appendChild(select);
-
-        const option = document.createElement('option');
-        option.innerHTML = 'Select value';
-        select.appendChild(option);
-
-        let arrLanguage = externalService.getLanguagesList();
-
-        for (let i = 0; i < arrLanguage.length; i++) {
-            let opt = document.createElement('option');
-            opt.value = i;
-            opt.innerHTML = arrLanguage[i];
-            select.appendChild(opt);
-        }
-        select.addEventListener('click', () => {
-
-            let strUser = select.options[select.selectedIndex].text;
-            let arrListLanguage = externalService.getCountryListByLanguage(strUser)
-            if (arrListLanguage.length !== 0) {
-                document.getElementById('tablePlace').innerHTML = '';
-                createTable(arrListLanguage)
-
-            } else {
-
-                document.getElementById('tablePlace').innerHTML = '';
-                tableDiv.innerText = 'No items, please choose search query'
-
-            }
-
-        })
+    if (direction === sortByOrderAscendingValue) {
+        return firstBigger ? 1 : negativeIndex
+    } else if (direction === sortByOrderDescendingValue) {
+        return firstBigger ? negativeIndex : 1
+    } else {
+        throw 'Unknown direction: ' + direction
     }
+}
 
+tableState.subscribe((mode, modeState) => {
+
+    if (mode === null || modeState.selected === null || modeState.selected === 'Select value') {
+        resetTable()
+    } else {
+        let countriesArray = null;
+        if (mode === 'by_region') {
+            countriesArray = externalService.getCountryListByRegion(modeState.selected)
+        } else if (mode === 'by_language') {
+            countriesArray = externalService.getCountryListByLanguage(modeState.selected)
+        } else {
+            throw 'Unknown mode: ' + mode
+        }
+
+        if (modeState.sortOrder === sortByOrderAscendingValue || modeState.sortOrder === sortByOrderDescendingValue) {
+            if (modeState.sortBy === countryColumnName) {
+                countriesArray.sort((country1, country2) => {
+                    const firstBigger = country1.name > country2.name
+                    return comparatorValueSelector(firstBigger, modeState.sortOrder);
+                })
+            } else if (modeState.sortBy === areaColumnName) {
+                countriesArray.sort((country1, country2) => {
+                    const firstBigger = country1.area > country2.area
+                    return comparatorValueSelector(firstBigger, modeState.sortOrder);
+                })
+            }
+        }
+
+        createTable(countriesArray)
+    }
 })
+
+function resetTable() {
+    const tablePlace = document.getElementById('tablePlace');
+    tablePlace.innerHTML = 'No items, please choose search query'
+}
+
+
+function createSelect(options) {
+    const select = document.createElement('select');
+    select.disabled = false;
+
+    selectParagraph = document.getElementById('selectParagraph')
+    selectParagraph.innerHTML = ''
+    selectParagraph.appendChild(select);
+
+    const option = document.createElement('option');
+    option.innerHTML = 'Select value';
+    select.appendChild(option);
+
+    for (let i = 0; i < options.length; i++) {
+
+        let opt = document.createElement('option');
+        opt.value = i;
+        opt.innerHTML = options[i];
+        select.appendChild(opt);
+    }
+    select.addEventListener('click', () => {
+        let selectedValue = select.options[select.selectedIndex].text;
+        tableState.updateSelected(selectedValue)
+    })
+}
+
+const upArrow = '&#8593'
+const downArrow = '&#8595'
+const doubleArrow = '&#8597'
+
+function getArrow(columnName, modeState) {
+    if (columnName !== modeState.sortBy) {
+        return doubleArrow
+    } else {
+        if (modeState.sortOrder === sortByOrderAscendingValue) {
+            return upArrow
+        } else if (modeState.sortOrder === sortByOrderDescendingValue) {
+            return downArrow
+        } else if (modeState.sortOrder === null || modeState.sortOrder === sortByOrderNoneValue) {
+            return doubleArrow
+        } else {
+            throw 'Unexpected sort order'
+        }
+    }
+}
 
 function createTable(arr) {
     const tablePlace = document.getElementById('tablePlace');
@@ -169,11 +279,13 @@ function createTable(arr) {
     let tableHtml = '<table>'
         + '<thead>'
         + '<tr>'
-        + '  <th>Country name <span id="countrySorter">&#11021<span></th>'
+        + '  <th>Country name <span onclick="tableState.updateSortBy(countryColumnName)">'
+        + getArrow(countryColumnName, tableState.modeState) + '</span></th>'
         + '  <th>Capital</th>'
         + '  <th>World Region</th>'
         + '  <th>Languages</th>'
-        + '  <th>Area<span>&#11021<span></th>'
+        + '  <th>Area<span onclick="tableState.updateSortBy(areaColumnName)">'
+        + getArrow(areaColumnName, tableState.modeState) + '</span></th>'
         + '  <th>Flag</th>'
         + '</tr>'
         + '</thead>'
