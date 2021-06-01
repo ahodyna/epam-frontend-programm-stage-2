@@ -1,0 +1,57 @@
+.table {
+    border-collapse: collapse;
+    border: 1px solid grey;
+    width: 350px;
+}
+
+th, td {
+    border: 1px solid grey;
+    padding: 30px;
+}
+
+.white {
+    background-color: wheat;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.task2 {
+    margin-top: 120px;
+}
+
+.input {
+    width: 30%;
+    padding: 10px 40px 10px 3px;
+}
+
+.button {
+    padding: 10px 20px 10px 20px;
+}
+
+.greenNotification {
+    width: 30%;
+    padding: 40px 20px 40px 20px;
+    background-color: green;
+}
+
+.redNotification {
+    width: 30%;
+    padding: 40px 20px 40px 20px;
+    background-color: red;
+}
+
+.redBorder {
+    border: 1px solid darkred;
+    width: 30%;
+    padding: 10px 40px 10px 3px;
+}
+
+/* START: Task 3 Styles */
+
+/* END: Task 3 Styles */
