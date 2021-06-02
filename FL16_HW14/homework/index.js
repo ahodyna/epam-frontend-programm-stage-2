@@ -118,10 +118,10 @@ document.getElementById('generalDivTask3').addEventListener('goal', (event) => {
     const gameResult = document.getElementById('gameResult')
     if (event.detail.teamName === 'teamA') {
         gameResult.className = 'red'
-        gameResult.innerHTML = event.detail.teamName + ' score!'
+        gameResult.innerHTML = 'Team A score!'
     } else {
         gameResult.className = 'blue'
-        gameResult.innerHTML = event.detail.teamName + ' score!'
+        gameResult.innerHTML = 'Team B score!'
     }
      const interval = 3000;
     setTimeout(() => {
