@@ -84,8 +84,70 @@ document.getElementById('input').addEventListener('keyup', () => {
     }
 })
 
+const two = 2;
 
-/* START TASK 3: Your code goes here */
+let ball = document.getElementById('ball');
+let basketballField = document.getElementById('field')
 
+function getBallCenter() {
+    ball.style.left = Math.round(basketballField.clientWidth / two - ball.offsetWidth / two) + 'px'
+    ball.style.top = Math.round(basketballField.clientHeight / two - ball.offsetHeight / two) + 'px'
+}
+getBallCenter()
 
-/* END TASK 3 */
+function createGoalEvent(teamName) {
+    return new CustomEvent('goal', {
+        bubbles: true, cancelable: false, composed: false,
+        detail: { 'teamName': teamName }
+    })
+}
+
+const basket1Element = document.getElementById('basket1')
+basket1Element.addEventListener('click', () => {
+    basket1Element.dispatchEvent(createGoalEvent('teamA'))
+})
+
+const basket2Element = document.getElementById('basket2')
+basket2Element.addEventListener('click', () => {
+    basket2Element.dispatchEvent(createGoalEvent('teamB'))
+})
+
+document.getElementById('generalDivTask3').addEventListener('goal', (event) => {
+    let count = Number(document.getElementById(event.detail.teamName).innerHTML)
+    document.getElementById(event.detail.teamName).innerText = count + 1;
+    const gameResult = document.getElementById('gameResult')
+    if (event.detail.teamName === 'teamA') {
+        gameResult.className = 'red'
+        gameResult.innerHTML = event.detail.teamName + ' score!'
+    } else {
+        gameResult.className = 'blue'
+        gameResult.innerHTML = event.detail.teamName + ' score!'
+    }
+     const interval = 3000;
+    setTimeout(() => {
+        document.getElementById('gameResult').innerHTML = '';
+        getBallCenter()
+    }, interval)
+})
+
+basketballField.onclick = function (event) {
+    let fieldCoords = this.getBoundingClientRect();
+    let ballCoords = {
+        top: event.clientY - fieldCoords.top - basketballField.clientTop - ball.clientHeight / two,
+        left: event.clientX - fieldCoords.left - basketballField.clientLeft - ball.clientWidth / two
+    }
+    if (ballCoords.top < 0) {
+        ballCoords.top = 0
+    }
+    if (ballCoords.left < 0) {
+        ballCoords.left = 0
+    }
+    if (ballCoords.left + ball.clientWidth > basketballField.clientWidth) {
+        ballCoords.left = basketballField.clientWidth - ball.clientWidth;
+    }
+    if (ballCoords.top + ball.clientHeight > basketballField.clientHeight) {
+        ballCoords.top = basketballField.clientHeight - ball.clientHeight;
+    }
+    ball.style.left = ballCoords.left + 'px';
+    ball.style.top = ballCoords.top + 'px';
+}

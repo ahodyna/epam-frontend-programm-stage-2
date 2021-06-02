@@ -52,6 +52,62 @@ th, td {
     padding: 10px 40px 10px 3px;
 }
 
-/* START: Task 3 Styles */
+.generalDivTask3 {
+    margin-top: 150px;
+}
 
-/* END: Task 3 Styles */
+.footballField {
+    position: relative;
+    width: 600px;
+    height: 330px;
+}
+
+.footballFieldImage {
+    position: relative;
+    width: 600px;
+    height: 330px;
+}
+
+.ball {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    transition: all 1s;
+}
+
+.score {
+    width: 590px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#basket1 {
+    position: absolute;
+    top: 157px;
+    left: 35px;
+    width: 15px;
+    height: 15px;
+}
+
+#basket2 {
+    position: absolute;
+    top: 157px;
+    right: 35px;
+    width: 15px;
+    height: 15px;
+}
+
+.red {
+    color: red;
+}
+
+.blue {
+    background-color: white;
+    color: rgb(102, 102, 209);
+}
+
+#gameResult {
+    display: flex;
+    width: 600px;
+    justify-content: center;
+}

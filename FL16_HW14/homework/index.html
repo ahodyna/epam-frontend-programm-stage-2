@@ -23,14 +23,33 @@
       <form id="form">
         <input class="input" placeholder="Type phone number in format +380*********" id="input">
         <button id="button" class="button" disabled>Send</button>
+      </form>
     </div>
-    </form>
   </div>
-  </div>
-
   <div id="task3">
-    <!-- TEMPLATE FOR TASK 3 GOES HERE -->
+    <div id='generalDivTask3' class='generalDivTask3'>
 
+      <div class='footballField' id='field'>
+        <img src='./assets/court.png' alt='court' class='footballFieldImage'>
+        <img src='./assets/ball.png' alt='ball' class='ball' id='ball'>
+        <div id="basket1"></div>
+        <div id="basket2"></div>
+      </div>
+
+      <div class='score'>
+        <div class='teamAscores'>
+          Team A:<span id='teamA'>0</span>
+        </div>
+        <div class='teamBscores'>
+          Team B:<span id='teamB'>0</span>
+        </div>
+      </div>
+
+      <div id="gameResult" class="result">
+
+      </div>
+
+    </div>
   </div>
 
   <script src="./index.js"></script>
