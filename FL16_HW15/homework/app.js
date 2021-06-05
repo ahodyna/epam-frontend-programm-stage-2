@@ -8,6 +8,7 @@ function navigateTo(href) {
 
 document.querySelector('#navigationButtons button.addTweet').addEventListener('click', () => {
     navigateTo(`#/add`)
+    document.getElementById('modifyItemInput').value = ''
 })
 
 // We are provided with half-done index.html file, and restriction to edit it in place. 
@@ -56,7 +57,7 @@ function hideAllPages() {
     document.getElementById('modifyItem').style.display = 'none';
 }
 
-function renderEditPage(tweetId, oldUrlHashValue) {
+function renderEditPage(tweetId) {
     document.getElementById('modifyItem').setAttribute(dataTweetIdAttrName, tweetId)
     hideAllPages()
     document.getElementById('modifyItem').style.display = 'block';
@@ -70,8 +71,13 @@ function renderAddPage() {
 }
 
 function generateId() {
-    return Math.ceil(Math.random() * 10000)
+    let numberId = 10000;
+    return Math.ceil(Math.random() * numberId)
 }
+
+document.getElementById('cancelModification').addEventListener('click', () => {
+    window.history.back();
+})
 
 const dataTweetIdAttrName = 'data-tweet-id'
 
@@ -88,20 +94,25 @@ document.getElementById('saveModifiedItem').addEventListener('click', () => {
     }
 
     if (!valid) {
-        alert('error')  // TODO: refactor to popup
-    } else {
 
-        if (tweetId != null) {
-            // update existed
-            console.log('update existed', tweetId, tweetsArr)
+        let alertMessageText = document.getElementById('alertMessageText');
+        alertMessageText.innerText = 'Error!You can not tweet about that';
+        let alertMessageDiv = document.getElementById('alertMessage');
+        alertMessageText.className = 'error'
+        alertMessageDiv.style.display = 'block'
+        let timeSetTimeout = 3000;
+        setTimeout(() => {
+            document.getElementById('alertMessage').style.display = 'none'
+
+        }, timeSetTimeout)
+    } else {
+        if (tweetId !== null) {
             for (let i = 0; i < tweetsArr.length; i++) {
-                console.log('~~~~~~~~~', tweetsArr[i].id, tweetId, tweetsArr[i].id === tweetId)
                 if (tweetsArr[i].id + '' === tweetId + '') {
                     tweetsArr[i].text = tweetText
                 }
             }
         } else {
-            // create new tweet
             tweetsArr.push({
                 id: generateId(),
                 text: tweetText,
@@ -128,28 +139,34 @@ function prepareTweetsItem(tweetData, refreshParentListCallback) {
         itemSpan.classList.add('liked');
     }
 
+    let divBtn = document.createElement('div');
+    divBtn.className = 'btn-style';
+    listItem.appendChild(divBtn)
+
+
     const likeButton = document.createElement('button')
     likeButton.innerText = 'like'
     likeButton.addEventListener('click', () => {
-        tweetsArr.filter(tw => tw.id == tweetData.id)
-            .forEach(tw => tw.liked = !tw.liked)
+        tweetsArr.filter(tw => tw.id === tweetData.id)
+            .forEach((tw) => {
+                tw.liked = !tw.liked
+            })
         refreshParentListCallback()
     })
-    listItem.appendChild(likeButton)
+    divBtn.appendChild(likeButton)
 
     const deleteButton = document.createElement('button')
-    deleteButton.innerText = 'delete'
+    deleteButton.innerText = 'remove'
     deleteButton.addEventListener('click', () => {
-        tweetsArr = tweetsArr.filter(tw => tw.id != tweetData.id)
+        tweetsArr = tweetsArr.filter(tw => tw.id !== tweetData.id)
         refreshParentListCallback()
     })
-    listItem.appendChild(deleteButton)
+    divBtn.appendChild(deleteButton)
 
     return listItem
 }
 
 function hasLikedTweets() {
-    console.log('================', tweetsArr)
     for (let i = 0; i < tweetsArr.length; i++) {
         if (tweetsArr[i].liked) {
             return true
@@ -159,8 +176,6 @@ function hasLikedTweets() {
 }
 
 function renderTweetList() {
-    console.log('renderTweetList:', tweetsArr)
-
     hideAllPages()
     document.getElementById('tweetItems').style.display = 'block';
 
@@ -178,7 +193,6 @@ function renderTweetList() {
 
 
 function renderLikedPage() {
-    console.log('renderLikedPage:', tweetsArr)
 
     hideAllPages()
     document.getElementById('likedTweets').style.display = 'block';
@@ -188,7 +202,7 @@ function renderLikedPage() {
 
     for (let i = 0; i < tweetsArr.length; i++) {
         if (tweetsArr[i].liked) {
-            tweetsItem = prepareTweetsItem(tweetsArr[i], () => renderLikedPage())
+            let tweetsItem = prepareTweetsItem(tweetsArr[i], () => renderLikedPage())
             list.appendChild(tweetsItem)
         }
     }
@@ -199,23 +213,17 @@ window.addEventListener('hashchange', (e) => {
     const newHashValue = e.newURL.substring(hashIndex)
 
     const oldUrlHashIndex = e.oldURL.indexOf('#')
-    const oldUrlHashValue = e.oldURL.substring(oldUrlHashIndex)
-    console.log('hashchange!', newHashValue, ' --- ', oldUrlHashValue)
+    e.oldURL.substring(oldUrlHashIndex)
 
     if (newHashValue === '#/') {
-        console.log('navigate to main page')
         renderTweetList()
     } else if (newHashValue.startsWith('#/edit')) {
-        console.log('navigate to edit page')
         const tweetId = newHashValue.substring('#/edit:'.length)
-        console.log('tweetId: --> ', tweetId)
 
         renderEditPage(tweetId)
     } else if (newHashValue.startsWith('#/add')) {
-        console.log('navigate to add page')
         renderAddPage()
     } else if (newHashValue.startsWith('#/liked')) {
-        console.log('navigate to liked page')
         renderLikedPage()
     }
 })
