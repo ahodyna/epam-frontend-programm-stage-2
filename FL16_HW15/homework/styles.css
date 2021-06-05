@@ -6,3 +6,7 @@
 .hidden{
     display: none;
 }
+
+.liked {
+    background-color: silver;
+}
