@@ -1,0 +1,244 @@
+:root {
+  --primary-color: #f2c744;
+  --light: #f4f6f9;
+  --dark: #000;
+  --primary-font: 'Shadows Into Light', cursive;
+  --secondary-font: 'Dancing Script', cursive;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.primary-font-thin {
+  font-family: var(--primary-font);
+  font-weight: 500;
+}
+
+.primary-font-bold {
+  font-family: var(--primary-font);
+  font-weight: 600;
+}
+
+.secondary-font-bold {
+  font-family: var(--secondary-font);
+  font-weight: 600;
+}
+
+.wrapper {
+  width: 1015px;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  grid-template-rows: 200px 1fr 150px;
+  grid-template-areas: "header header" "main aside" "footer footer";
+  grid-gap: 3px;
+  margin: 0 auto;
+  font-family: var(--secondary-font);
+}
+
+.header {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  line-height: 2px;
+  grid-area: header;
+  background: var(--light);
+}
+
+.aside {
+  width: 380px;
+  grid-area: aside;
+  background: var(--light);
+}
+
+h5 {
+  margin: 4px;
+}
+
+.fixed {
+  display: grid;
+  grid-template-columns: 380px;
+  position: fixed;
+  background: var(--light);
+  text-align: center;
+  align-items: center;
+  justify-items: center;
+}
+
+.main {
+  grid-area: main;
+  background: var(--light);
+  width: 633px;
+}
+
+.footer {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  line-height: 2px;
+  grid-area: footer;
+  background: var(--light);
+}
+
+.logo-header {
+  width: 150px;
+  height: 100px;
+}
+
+.photo-wrapper {
+  width: 640px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  grid-auto-rows: minmax(75px, auto);
+  grid-gap: 5px;
+  grid-auto-flow: dense;
+}
+
+.photo-small {
+  background-image: url(https://picsum.photos/200/300);
+  background-repeat: no-repeat
+}
+
+.biggest-photo {
+  background-image: url(https://picsum.photos/200/300);
+  grid-row: span 4;
+  background-repeat: no-repeat
+}
+
+.square-photo {
+  background-image: url(https://picsum.photos/200/300);
+  grid-row: span 3;
+  background-repeat: no-repeat
+}
+
+.rectangle-photo {
+  background-image: url(https://picsum.photos/200/300);
+  grid-row: span 2;
+  background-repeat: no-repeat
+}
+
+.avatar-wrap {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.link {
+  color: black;
+}
+
+.avatar {
+  height: 100%;
+  width: auto;
+  margin-left: -50px;
+}
+
+.logo-footer {
+  width: 75px;
+  height: 50px;
+}
+
+@media screen and (max-width: 992px) {
+  .wrapper {
+    width: 580px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 200px 500px 1fr 150px;
+    grid-template-areas: "header" "aside" "main" "footer";
+    grid-gap: 3px;
+    font-family: var(--secondary-font);
+  }
+  .header {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    line-height: 2px;
+    grid-area: header;
+    background: var(--light);
+  }
+  .aside {
+    grid-area: aside;
+    background: var(--light);
+    display: grid;
+    grid-template-rows: 1fr;
+    width: 100%;
+  }
+  .fixed {
+    display: grid;
+    grid-template-columns: 1fr;
+    position: static;
+    background: var(--light);
+  }
+  .main {
+    grid-area: main;
+    background: var(--light);
+  }
+  .footer {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    line-height: 1px;
+    grid-area: footer;
+    background: var(--light);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .wrapper {
+    width: 80%;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 250px 680px 1fr 220px;
+    grid-template-areas: "header" "aside" "main" "footer";
+    grid-gap: 2px;
+    font-family: var(--secondary-font);
+  }
+  .header {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    line-height: 2px;
+    grid-area: header;
+    background: var(--light);
+  }
+  .logo-footer {
+    width: 75px;
+    height: 50px;
+  }
+  .aside {
+    grid-area: aside;
+    background: var(--light);
+    display: grid;
+    width: 100%;
+  }
+  .fixed {
+    display: grid;
+    grid-template-rows: 1fr;
+    position: static;
+    background: var(--light);
+  }
+  .main {
+    grid-area: main;
+    background: var(--light);
+    width: 100%;
+  }
+  .avatar-wrap {
+    margin: 0px;
+  }
+  .photo-wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 100%;
+  }
+  .footer {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    line-height: 1px;
+    grid-area: footer;
+    background: var(--light);
+  }
+}
