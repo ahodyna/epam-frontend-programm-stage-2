@@ -1,0 +1,77 @@
+﻿* {
+  outline: none;
+}
+
+body {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.wrap {
+  margin: 0 auto;
+}
+
+.header {
+  background-image: url(../img/header-bg.jpg);
+  background-repeat: no-repeat;
+  height: 600px;
+  color: white;
+  padding-top: 50px;
+  margin-bottom: 30px;
+}
+
+.title {
+  padding-top: 120px;
+}
+
+h4 {
+  margin-bottom: 0;
+}
+
+.list {
+  list-style-type: none;
+}
+
+.list a {
+  color: white;
+}
+
+.getInTouchBtn {
+  background-image: url(../img/touch-bg.png);
+  background-repeat: no-repeat;
+  padding: 20px 90px 25px 97px;
+}
+
+.references-bg {
+  margin-top: 100px;
+}
+
+.footer {
+  background-image: url(../img/footer-bg.jpg);
+  background-repeat: no-repeat;
+  margin: 0;
+}
+
+.sendBtn {
+  padding: 10px 38px 10px 38px;
+}
+
+.color {
+  background-color: black;
+  border: none;
+  border-bottom: 1px solid white;
+}
+
+.contact {
+  background-color: black;
+  color: white;
+  height: 350px;
+}
+
+.references-photo {
+  margin-left: -310px;
+  margin-top: -50px;
+}
+
+.footerReservedText {
+  font-size: small;
+}
