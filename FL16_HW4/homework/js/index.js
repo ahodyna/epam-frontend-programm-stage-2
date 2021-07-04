@@ -1,19 +1,9 @@
 'use strict';
 
-/**
- * Class
- * @constructor
- * @param size - size of pizza
- * @param type - type of pizza
- * @throws {PizzaException} - in case of improper use
- */
-
-
 class Pizza {
 
-    extraIngredients = []
-
     constructor(size, type) {
+        this.extraIngredients = []
 
         if (arguments.length === 1) {
             throw new PizzaExeption('Required two arguments, given 1')
@@ -73,7 +63,8 @@ class Pizza {
     }
     getPizzaInfo() {
         return `Size: ${this.size.lable}, type: ${this.type.lable};
-         extra ingredients: ${getExtraIngredientsName(this.extraIngredients)}; price: ${this.getPrice()}`
+extra ingredients: ${getExtraIngredientsName(this.extraIngredients)}; 
+price: ${this.getPrice()}`
     }
 }
 
@@ -120,7 +111,6 @@ function checkType(type) {
     return false
 }
 
-/* Sizes, types and extra ingredients */
 Pizza.SIZE_S = { lable: 'SMALL', price: 50 }
 Pizza.SIZE_M = { lable: 'MEDIUM', price: 75 }
 Pizza.SIZE_L = { lable: 'LARGE', price: 100 }
@@ -133,7 +123,7 @@ Pizza.EXTRA_TOMATOES = { lable: 'TOMATOES', price: 5 }
 Pizza.EXTRA_CHEESE = { lable: 'CHEESE', price: 7 }
 Pizza.EXTRA_MEAT = { lable: 'MEAT', price: 9 }
 
-/* Allowed properties */
+
 Pizza.allowedSizes = [Pizza.SIZE_S, Pizza.SIZE_M, Pizza.SIZE_L]
 Pizza.allowedTypes = [Pizza.TYPE_VEGGIE, Pizza.TYPE_MARGHERITA, Pizza.TYPE_PEPPERONI]
 Pizza.allowedExtraIngredients = [Pizza.EXTRA_TOMATOES, Pizza.EXTRA_CHEESE, Pizza.EXTRA_MEAT]
@@ -144,48 +134,3 @@ class PizzaExeption {
         this.log = log
     }
 }
-
-/**
- * Provides information about an error while working with a pizza.
- * details are stored in the log property.
- * @constructor
- */
-
-
-
-
-
-// ----------------------------------------------------
-// tests
-
-/* It should work */
-// small pizza, type: veggie
-let pizza = new Pizza(Pizza.SIZE_S, Pizza.TYPE_VEGGIE);
-// add extra meat
-pizza.addExtraIngredient(Pizza.EXTRA_MEAT);
-// check price
-console.log(`Price: ${pizza.getPrice()} UAH`); //=> Price: 109 UAH
-// add extra corn
-pizza.addExtraIngredient(Pizza.EXTRA_CHEESE);
-// add extra corn
-pizza.addExtraIngredient(Pizza.EXTRA_TOMATOES);
-// check price
-console.log(`Price with extra ingredients: ${pizza.getPrice()} UAH`); // Price: 121 UAH
-// check pizza size
-console.log(`Is pizza large: ${pizza.getSize() === Pizza.SIZE_L}`); //=> Is pizza large: false
-// remove extra ingredient
-pizza.removeExtraIngredient(Pizza.EXTRA_CHEESE);
-console.log(`Extra ingredients: ${pizza.getExtraIngredients().length}`); //=> Extra ingredients: 2
-console.log(pizza.getPizzaInfo()); //=> Size: SMALL, type: VEGGIE; extra ingredients: MEAT,TOMATOES; price: 114UAH.
-
-// examples of errors
-let pizza2 = new Pizza(Pizza.SIZE_S); // => Required two arguments, given: 1
-
-let pizza3 = new Pizza(Pizza.SIZE_S, Pizza.SIZE_S); // => Invalid type
-
-let pizza4 = new Pizza(Pizza.SIZE_S, Pizza.TYPE_VEGGIE);
-pizza4.addExtraIngredient(Pizza.EXTRA_MEAT);
-pizza4.addExtraIngredient(Pizza.EXTRA_MEAT); // => Duplicate ingredient
-
-let pizza5 = new Pizza(Pizza.SIZE_S, Pizza.TYPE_VEGGIE);
-pizza.addExtraIngredient(Pizza.EXTRA_CORN); // => Invalid ingredient
