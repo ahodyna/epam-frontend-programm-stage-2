@@ -22,7 +22,6 @@ function sendMessage() {
 }
 
 socket.onmessage = function (event) {
-    console.log(event)
     let incomingData = JSON.parse(event.data);
 
     let obj = {

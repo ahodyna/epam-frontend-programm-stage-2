@@ -32,7 +32,6 @@ function editUser(userName, id) {
     })
         .then(showSpinner())
         .then((response) => response.json())
-        .then((json) => console.log(json));
     setTimeout(hideSpinner, timeSetTimeout)
     document.getElementById(`${id}`).innerText = name
 
