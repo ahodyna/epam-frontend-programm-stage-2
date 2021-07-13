@@ -59,7 +59,7 @@ $(document).ready(function () {
     });
 
     function isSafe(expression) {
-        return /(\d+\s*(\*|\/|\+|-)\s*)+(\d+\s*)/.test(expression)
+        return /(?:(?:^|[-+_*/])(?:\s*-?\d+(\.\d+)?(?:[eE][+-]?\d+)?\s*))+$/.test(expression)
 
     }
 
