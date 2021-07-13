@@ -1,0 +1,105 @@
+.container {
+    display: flex;
+}
+
+.wrap {
+    width: 470px;
+    height: 600px;
+    background-color: rgb(87, 87, 133);
+    border: 2px solid #111;
+    border-radius: 5px;
+}
+
+.wrap-buttons {
+    width: 100%;
+    height: 500px;
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.input {
+    width: 98%;
+    padding-bottom: 28px;
+}
+
+.wrap-field {
+    max-width: 75%;
+    max-height: 100%;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid white;
+}
+
+.button {
+    background-color: rgb(123, 102, 144);
+    margin: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.history-wrap {
+    width: 470px;
+    height: 200px;
+    background-color: rgb(126, 126, 172);
+    margin-left: 30px;
+    text-align: center;
+    overflow: scroll;
+}
+
+.history-title {
+    color: white;
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.circle {
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    padding: 4px;
+    background: #fff;
+    border: 2px solid red;
+    margin-right: 20px;
+}
+
+.circle:hover {
+    background-color: red;
+}
+
+.circle.red-circle {
+    background-color: red;
+}
+
+.history-log {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 12px;
+}
+
+.expression {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+    font-size: 19px;
+    width: 70%
+}
+
+.delete {
+    margin-top: 8px;
+    margin-right: 20px;
+    font-size: 25px;
+}
+
+.delete:hover {
+    color: red;
+}
+
+.text-decoration {
+    text-decoration: underline;
+}
