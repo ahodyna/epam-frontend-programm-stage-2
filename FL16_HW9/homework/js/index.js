@@ -3,12 +3,6 @@ import resetGame from './resetGame'
 import '../scss/general.scss'
 import '../scss/buttons.scss'
 import '../img/rock-paper-scissor.jpg'
-// import img from '../img/rock-paper-scissor.jpg'
-
-// let imgNode = document.createElement('img');
-// imgNode.setAttribute('src', `${img}`)
-
-// document.getElementById('generalImg').appendChild(imgNode)
 
 document.getElementById('start').addEventListener('click', () => {
 
