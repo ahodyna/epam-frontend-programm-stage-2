@@ -27,7 +27,6 @@ module.exports = (env) => {
                 minimizerOptions: {
                     plugins: [
                         ["gifsicle", { interlaced: true }],
-                        ["jpegtran", { progressive: true }],
                         ["optipng", { optimizationLevel: 5 }],
                     ],
                 },
@@ -39,7 +38,6 @@ module.exports = (env) => {
         module: {
             rules: [
              {
-
                 test: /\.(gif|png|jpg|svg)$/i,
                 type: "asset",
                 use: [
