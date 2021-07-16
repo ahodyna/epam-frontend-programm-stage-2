@@ -2,7 +2,11 @@ import computerRandomItem from './arrayRandomItem'
 import resetGame from './resetGame'
 import '../scss/general.scss'
 import '../scss/buttons.scss'
-import '../img/rock-paper-scissor.jpg'
+import pictures from '../img/rock-paper-scissor.jpg'
+
+let img = document.createElement('img')
+img.src = pictures;
+document.getElementById('img').appendChild(img)
 
 document.getElementById('start').addEventListener('click', () => {
 

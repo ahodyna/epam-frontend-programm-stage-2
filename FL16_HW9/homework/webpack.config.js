@@ -39,7 +39,6 @@ module.exports = (env) => {
             rules: [
              {
                 test: /\.(gif|png|jpg|svg)$/i,
-                type: "asset",
                 use: [
                     'file-loader',
                     {

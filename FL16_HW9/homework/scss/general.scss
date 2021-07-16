@@ -14,12 +14,9 @@ $width: 500px;
     font-family: $font-family;
 
     .rules {
-        background: url('../img/rock-paper-scissor.jpg');
-        background-size: auto 100%;
-        background-repeat: no-repeat;
         width: $width;
         height: 380px;
-        color: rgb(231, 227, 227);
+        color: rgb(10, 10, 10);
         text-align: center;
         margin-top: $marginTop;
         padding-top: $padding-top;
