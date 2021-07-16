@@ -1,0 +1,58 @@
+$padding: 15px 32px;
+$inlineBox: inline-block;
+$textAlign: center;
+$textDecoration: none;
+$borderNone: none;
+$colorWhite: white;
+
+.start {
+    background-color: #4caf50;
+    border: $borderNone;
+    color: $colorWhite;
+    padding: $padding;
+    text-align: $textAlign;
+    text-decoration: $textDecoration;
+    display: $inlineBox;
+    font-size: 16px;
+    margin-top: 10px;
+
+    &:hover {
+        background-color: #256727;
+    }
+}
+
+.reset {
+    background-color: #b61414;
+    border: $borderNone;
+    color: $colorWhite;
+    padding: 10px 22px;
+    text-align: $textAlign;
+    text-decoration: $textDecoration;
+    display: $inlineBox;
+    font-size: 13px;
+    margin-top: 10px;
+    &:hover {
+        background-color: #a5272d;
+    }
+}
+
+.chooseItem {
+    display: $inlineBox;
+    padding: $padding;
+    border: 0.15em solid #cccccc;
+    box-sizing: border-box;
+    text-decoration: $textDecoration;
+    font-family: "Segoe UI", "Roboto", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #000000;
+    background-color: #cccccc;
+    text-align: $textAlign;
+    position: relative;
+    &:hover {
+        border-color: #7a7a7a;
+    }
+    &:active {
+        background-color: #999999;
+    }
+}

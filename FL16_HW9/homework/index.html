@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+  <title>Tools</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Rock, Paper or Scissors!</h1>
+
+    <div class="rules">
+      <h2>Rules</h2>
+      <p>Scissors beats a paper</p>
+      <p>Paper beats rock</p>
+      <p>Rock beats scissors</p>
+      <p>And we play up to three wins!</p>
+      <p>Let`s play!</p>
+      <button id='start' class="start">START</button>
+    </div>
+
+
+    <div class="wrap-section-game">
+      <div class="section-pl">
+        <div class="info">
+          <span>You :</span><span id="playerScore">0</span>
+        </div>
+        <div class="choose" id="playerChoose">
+        </div>
+
+      </div>
+
+      <div id="result" class="result"></div>
+
+      <div class="section-c">
+        <div class="info">
+          <span>Computer:</span><span id="computerScore">0</span>
+        </div>
+        <div class="choose" id="computerChoose">
+        </div>
+      </div>
+
+    </div>
+
+    <div class="buttons">
+      <button id="rock" class="chooseItem">rock</button>
+      <button id="paper" class="chooseItem">paper</button>
+      <button id="scissors" class="chooseItem">scissors</button>
+    </div>
+
+    <div class="reset-wrap">
+      <button id='reset' class="reset">RESET</button>
+    </div>
+
+  </div>
+
+
+
+
+  <script src='dist/bundle.js'></script>
+</body>
+</html>
