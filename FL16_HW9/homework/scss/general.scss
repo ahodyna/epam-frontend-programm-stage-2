@@ -14,7 +14,7 @@ $width: 500px;
     font-family: $font-family;
 
     .rules {
-        background-image: url(../img/rock-paper-scissor.jpg);
+        background: url('../img/rock-paper-scissor.jpg');
         background-size: auto 100%;
         background-repeat: no-repeat;
         width: $width;
