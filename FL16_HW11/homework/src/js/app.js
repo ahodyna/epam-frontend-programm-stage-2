@@ -2,9 +2,6 @@ import hideAllPages from './hideAllPages'
 import '../scss/list.scss'
 import '../scss/styles.scss'
 
-
-const root = document.getElementById('root');
-
 let tweetsArr = []
 
 function navigateTo(href) {
