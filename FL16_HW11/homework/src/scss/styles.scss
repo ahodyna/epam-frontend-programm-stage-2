@@ -1,0 +1,40 @@
+#root {
+    display: flex;
+    justify-content: center;
+
+    .hidden {
+        display: none;
+
+        .error {
+            background-color: rgb(208, 203, 203);
+            margin-left: 40px;
+            padding: 20px 10px 20px 10px;
+        }
+    }
+    .listPage {
+        #navigationButtons {
+            display: flex;
+            justify-content: space-around;
+        }
+        #list {
+            list-style-type: none;
+
+            li {
+                display: flex;
+                justify-content: space-between;
+                margin: 5px;
+            }
+            .liked {
+                background-color: rgb(216, 223, 83);
+            }
+            &span {
+                margin-right: 40px;
+                &:hover {
+                    background-color: rgb(154, 169, 226);
+                }
+
+                
+            }
+        }
+    }
+}

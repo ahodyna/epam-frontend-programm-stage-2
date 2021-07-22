@@ -1,0 +1,26 @@
+.listPage {
+    #navigationButtons {
+        display: flex;
+        justify-content: space-around;
+    }
+    #list {
+        list-style-type: none;
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px;
+        }
+
+        &span {
+            margin-right: 40px;
+            &:hover {
+                background-color: rgb(154, 169, 226);
+            }
+
+            .liked {
+                background-color: rgb(216, 223, 83);
+            }
+        }
+    }
+}
